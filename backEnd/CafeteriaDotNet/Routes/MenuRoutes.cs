@@ -1,6 +1,7 @@
 using Menu.Data;
 using Menu.Models;
 using Microsoft.EntityFrameworkCore;
+using SQLitePCL;
 
 namespace Menu.Routers;
 
@@ -11,24 +12,39 @@ public static class Menu
         var route = app.MapGroup("menu");
 
         route.MapGet("",
-        async (
-            MenuContext context
-
-        ) =>
+        async (MenuContext context) =>
         {
-            var allItens = await context.Menu.Where(status => status.Active == true).ToArrayAsync();
+            var allItens = await context.Menu
+            .Where(status => status.Active == true)
+            .GroupBy(c => c.TypeOfProduct)
+            .ToDictionaryAsync(group => group.Key, group => group.Select(x => new
+            {
+                x.id,
+                x.Name,
+                x.Description,
+                x.Photo,
+                x.Weight
+            }).ToList());
             return Results.Ok(allItens);
         });
 
         route.MapGet("todos-produtos",
-        async (
-           MenuContext context
+        async (MenuContext context) =>
+        {
 
-       ) =>
-       {
-           var allItens = await context.Menu.ToArrayAsync();
-           return Results.Ok(allItens);
-       });
+            var allItens = await context.Menu
+            .GroupBy(c => c.TypeOfProduct)
+            .ToDictionaryAsync(group => group.Key, group => group.Select(x => new
+            {
+                x.id,
+                x.Name,
+                x.Description,
+                x.Photo,
+                x.Weight
+            }).ToList());
+            return Results.Ok(allItens);
+        });
+
 
         route.MapPost("", async (MenuRequest request, MenuContext context) =>
         {
@@ -75,4 +91,13 @@ public static class Menu
             return Results.Ok(product);
         });
     }
+}
+
+
+public class Produto
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public string Categoria { get; set; }
+    public decimal Preco { get; set; }
 }
