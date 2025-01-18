@@ -1,0 +1,72 @@
+# .NET
+backend/CafeteriaDotNet/bin/
+backend/CafeteriaDotNet/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Entity Framework migrations
+backend/CafeteriaDotNet/Migrations/
+backend/CafeteriaDotNet/menu.sqlite
+backend/CafeteriaDotNet/menu.sqlite-shm
+backend/CafeteriaDotNet/menu.sqlite-wal
+
+# ASP.NET Core specific
+backend/CafeteriaDotNet/wwwroot/
+backend/CafeteriaDotNet/appsettings.Development.json
+backend/CafeteriaDotNet/appsettings.Production.json
+backend/CafeteriaDotNet/appsettings.json
+backend/CafeteriaDotNet/Properties/launchSettings.json
+
+# Node.js (Frontend)
+frontEnd/node_modules/
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Entity Framework migrations
+backend/CafeteriaDotNet/Migrations/
+
+# ASP.NET Core specific
+backend/CafeteriaDotNet/wwwroot/
+backend/CafeteriaDotNet/appsettings.Development.json
+backend/CafeteriaDotNet/ppsettings.Production.json
+
+#Front
+# dependencies
+frontend/node_modules
+
+
+# testing
+frontend/coverage
+
+# next.js
+frontend/.next/
+frontend/out/
+
+# production
+frontend/build
+
+# misc
+*.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+frontend/next-env.d.ts
+
+
+
